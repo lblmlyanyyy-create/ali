@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ياسمين 🎀</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #FF1744;
+            --secondary: #FF69B4;
+            --accent: #FFD700;
+            --dark: #2C1F2D;
+            --light: #FFF9FB;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--light) 0%, #FFE4E9 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+            perspective: 1000px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: 0 20px 60px rgba(255, 23, 68, 0.15);
+            text-align: center;
+            animation: slideUp 0.6s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 10px rgba(255, 23, 68, 0.3); }
+            50% { text-shadow: 0 0 20px rgba(255, 107, 148, 0.6); }
+        }
+
+        .emoji {
+            font-size: 60px;
+            margin-bottom: 20px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        h1 {
+            color: var(--dark);
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            color: var(--secondary);
+            font-size: 1.1em;
+            margin-bottom: 30px;
+            font-weight: 500;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        .message {
+            color: var(--dark);
+            font-size: 1.05em;
+            line-height: 1.7;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+
+        .buttons-container {
+            display: flex;
+            gap: 15px;
+            flex-direction: column;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-align: center;
+            padding: 18px 30px;
+        }
+
+        .btn-positive {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+            color: white;
+            box-shadow: 0 10px 30px rgba(255, 23, 68, 0.3);
+        }
+
+        .btn-positive:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 23, 68, 0.4);
+        }
+
+        .btn-negative {
+            background: transparent;
+            color: var(--dark);
+            border: 2.5px solid var(--secondary);
+            font-weight: 700;
+        }
+
+        .btn-negative:hover {
+            background: var(--secondary);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .btn-back {
+            background: transparent;
+            color: var(--secondary);
+            border: 2px solid var(--accent);
+            margin-top: 15px;
+            font-weight: 600;
+        }
+
+        .btn-back:hover {
+            background: var(--accent);
+            color: var(--dark);
+        }
+
+        .screen {
+            display: none;
+        }
+
+        .screen.active {
+            display: block;
+        }
+
+        .positive-content {
+            background: linear-gradient(135deg, rgba(255, 107, 148, 0.1) 0%, rgba(255, 215, 0, 0.1) 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+        }
+
+        .positive-title {
+            color: var(--primary);
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .positive-text {
+            color: var(--dark);
+            font-size: 1em;
+            line-height: 1.8;
+            text-align: right;
+        }
+
+        .negative-text {
+            font-size: 1.15em;
+            line-height: 1.8;
+            background: linear-gradient(135deg, rgba(255, 23, 68, 0.1) 0%, rgba(255, 107, 148, 0.1) 100%);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+            font-weight: 500;
+        }
+
+        .counter {
+            color: var(--secondary);
+            font-size: 0.9em;
+            margin-top: 20px;
+            font-weight: 600;
+        }
+
+        .sparkle {
+            display: inline-block;
+            margin: 0 3px;
+            animation: spin 0.6s ease-out;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: scale(0) rotate(0deg);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1) rotate(360deg);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .card {
+                padding: 30px 20px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            .emoji {
+                font-size: 50px;
+            }
+
+            button {
+                font-size: 1em;
+                padding: 15px 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- الشاشة الأولى: الترحيب -->
+        <div class="card screen active" id="welcome-screen">
+            <div class="emoji">✨</div>
+            <h1>مرحبا ياسمين</h1>
+            <p class="subtitle">قررت أقول لك حاجات</p>
+            <p class="message">في خيارين قدامك... واحد صح والثاني... بنشوف 😏</p>
+            <div class="buttons-container">
+                <button class="btn-positive" onclick="showScreen('positive-screen')">
+                    ✨ إيجابيات ياسمين
+                </button>
+                <button class="btn-negative" onclick="startNegative()">
+                    🚫 سلبيات ياسمين
+                </button>
+            </div>
+        </div>
+
+        <!-- الشاشة الثانية: الإيجابيات -->
+        <div class="card screen" id="positive-screen">
+            <div class="emoji">💎</div>
+            <h1>ياسمين</h1>
+            <p class="subtitle">الحقيقة مشكلة معاك...</p>
+            
+            <div class="positive-content">
+                <p class="positive-text">
+                    <strong>سريعة انتباه</strong><br>
+                    والله بتشوفي الحاجات قبل ما حد يقولها لك. دماغك يشتغل بسرعة كورية درامة - المشاهد اللي حد ما انتبه لها أنتِ بتشوفيها من أول ثانية. ما في حاجة تتخفى عليك.
+                </p>
+            </div>
+
+            <div class="positive-content">
+                <p class="positive-text">
+                    <strong>مرحة وما تبالي</strong><br>
+                    أنتِ الحد الوحيد اللي تضحكي على نفسك وما تأخذي الدنيا جاد. عندك ثقة غريبة فيك، وهذا الشيء اللي بيخليك حقيقية. ما في كرنج، ما في تكلف - بس أنتِ.
+                </p>
+            </div>
+
+            <div class="positive-content">
+                <p class="positive-text">
+                    <strong>قوية ما تهزك كلمات سب</strong><br>
+                    في ناس كلمة واحدة تكسرهم... أنتِ؟ تضحكي وتمشي. سمك غليظ بس ليس بشكل حرة - بشكل إنسانة ما عندها وقت للسلبية. وهذا نادر.
+                </p>
+            </div>
+
+            <div class="positive-content">
+                <p class="positive-text">
+                    <strong>كورية بطريقتك الخاصة 🎬</strong><br>
+                    تحبي كي درامة وفي أشياء فيك من دراما: الدراماتيكية، التفاصيل اللي شايفتها، الطريقة اللي تمدحي أو تنتقدي... كل ده بجدية وفي نفس الوقت بطريقة طريفة. أنتِ مسلسل كويس.
+                </p>
+            </div>
+
+            <p class="counter">💖 ياسمين = حالة + نص</p>
+            <button class="btn-back" onclick="showScreen('welcome-screen')">← رجعي</button>
+        </div>
+
+        <!-- الشاشة الثالثة: السلبيات -->
+        <div class="card screen" id="negative-screen">
+            <div class="emoji">😒</div>
+            <h1>تمام</h1>
+            <p class="subtitle">تبحثي عن سلبيات؟</p>
+            <div class="negative-text" id="negative-text"></div>
+            <p class="counter" id="counter-text"></p>
+            <div class="buttons-container">
+                <button class="btn-negative" onclick="nextNegative()">
+                    تاني يمكن تشوفي واحدة 😅
+                </button>
+                <button class="btn-back" onclick="showScreen('welcome-screen')">← خلاص رجعي</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let negativeCount = 0;
+
+        const negativeMessages = [
+            "يالا غباءك انك تبحثي عن سلبيات لأنها بكل بساطة <strong>ما موجودة</strong> 🙃",
+            
+            "تريدين موضوع سلبي؟ يالا... سلبيتك الوحيدة انك ما تعطين أي حد فرصة انه يقول لك الحقيقة لأنك بالفعل تعرفيها. ده إيجابي بالمناسبة.",
+            
+            "خلاص قلنا انك ما عندك سلبيات ليش تدخلي مرة اخرى هنا؟ 😤 روحي شوفي الإيجابيات بتاعتك بدل ما تضيعي وقتك.",
+            
+            "أنتِ مثل أبطال كي درامة... بتدورين على مشكلة غير موجودة. سلبيتك الوحيدة انك <strong>مثل الدراما نفسها</strong> - بتعقدي الأمور الحلوة.",
+            
+            "تكرار = عبث. أنتِ ذكية تعرفي هالشيء. وين المنطق في البحث عن حاجة ما موجودة مرتين؟ روحي اشتغلي على إيجابياتك بدل ما تصدعي راسك.",
+            
+            "Okay ياسمين، عرفنا انك عنيدة وتحبي تتفرجي كام مرة على نفس المسلسل. بس هذا ممل 😑 اختاري إيجابيات وخلاص.",
+            
+            "الله يرحم صبرك... بتضغطي على 'سلبيات' مثل بطلة درامة كورية بتدور على البروف الأخير. ما في بروف - سلبيات ما موجودة.",
+            
+            "تمام أخرت شيء: أنتِ ذكية كفاية انك تعرفي انك ما عندك سلبيات. فليش تضيعي وقتك؟ هذا هو السلبي الحقيقي - الوقت الضايع 🕐"
+        ];
+
+        function showScreen(screenId) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById(screenId).classList.add('active');
+        }
+
+        function startNegative() {
+            negativeCount = 0;
+            showNegativeMessage();
+            showScreen('negative-screen');
+        }
+
+        function showNegativeMessage() {
+            const messageElement = document.getElementById('negative-text');
+            messageElement.innerHTML = negativeMessages[negativeCount];
+            
+            const counterElement = document.getElementById('counter-text');
+            if (negativeCount > 0) {
+                counterElement.innerHTML = `<span class="sparkle">✨</span> مرة ${negativeCount + 1} وأنتِ ما تتعلمي <span class="sparkle">✨</span>`;
+            } else {
+                counterElement.innerHTML = '';
+            }
+        }
+
+        function nextNegative() {
+            negativeCount++;
+            if (negativeCount >= negativeMessages.length) {
+                negativeCount = 0;
+            }
+            showNegativeMessage();
+        }
+    </script>
+</body>
+</html>
